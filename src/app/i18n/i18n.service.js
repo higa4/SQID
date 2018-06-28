@@ -40,7 +40,10 @@ angular.module('i18n').factory('i18n', ['wikidataapi', 'properties', '$translate
 		}
 
 		var fixes = {
-			'nl-nl': 'nl'
+			'nl-nl': 'nl',
+			'fr-fr': 'fr',
+			'fr-ch': 'fr',
+			'fr-ca': 'frc'
 		};
 
 		var processed = languageCode
