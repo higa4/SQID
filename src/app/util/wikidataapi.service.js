@@ -9,7 +9,7 @@ angular.module('util').factory('wikidataapi', ['util', '$q', function(util, $q) 
 
 	var getEntityData = function(id, language) {
 		// Special:EntityData does not always return current data, not even with "action=purge"
-		return util.jsonpRequest('https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=' + id + '&redirects=yes&props=sitelinks|descriptions|claims|datatype|aliases|labels&languages=' + language + '&callback=JSON_CALLBACK');
+		return util.jsonpRequest('https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=' + id + '&redirects=yes&props=sitelinks|descriptions|claims|datatype|aliases|labels&languages=' + language + '&languagefallback=&callback=JSON_CALLBACK');
 	}
 
 	var getClaims = function(stmtIds) {
@@ -42,7 +42,7 @@ angular.module('util').factory('wikidataapi', ['util', '$q', function(util, $q) 
 //		return util.jsonpRequest('https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=Q1339&redirects=yes&props=claims&languages=' + language + '&callback=JSON_CALLBACK');
 		var baseUrl = 'https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&redirects=yes&props=claims'+
 			//
-			'&languages=' + language + '&callback=JSON_CALLBACK';
+			'&languages=' + language + '&languagefallback=&callback=JSON_CALLBACK';
 		var requests = [];
 
 
@@ -86,7 +86,7 @@ angular.module('util').factory('wikidataapi', ['util', '$q', function(util, $q) 
 	}
 
 	var getEntityTerms = function(entityIds, language) {
-		var baseUrl = 'https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&redirects=yes&props=descriptions%7Clabels&languages=' + language + '&callback=JSON_CALLBACK';
+		var baseUrl = 'https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&redirects=yes&props=descriptions%7Clabels&languages=' + language + '&languagefallback=&callback=JSON_CALLBACK';
 		var requests = [];
 
 		for (var i = 0; i < entityIds.length; i += 50) {
@@ -111,7 +111,7 @@ angular.module('util').factory('wikidataapi', ['util', '$q', function(util, $q) 
 	};
 
 	var getEntityLabels = function(entityIds, language) {
-		var baseUrl = 'https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&redirects=yes&props=labels&languages=' + language + '&callback=JSON_CALLBACK';
+		var baseUrl = 'https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&redirects=yes&props=labels&languages=' + language + '&languagefallback=&callback=JSON_CALLBACK';
 		var requests = [];
 
 		for (var i = 0; i < entityIds.length; i += 50) {
